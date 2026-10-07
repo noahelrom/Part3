@@ -19,10 +19,13 @@ float Dealership::GetAveragePrice() {
         return 0.0;
     }
     float total = 0.0;
+    int totalVehicles = 0;
     for (size_t i = 0; i < _showrooms.size(); ++i) {
         total += _showrooms.at(i).GetInventoryValue();
+        totalVehicles += _showrooms.at(i).GetVehicleList().size();
     }
-    return total / _showrooms.size();
+   float average = total / totalVehicles;
+   return average;
 }
 
 void Dealership::ShowInventory() {
@@ -34,5 +37,6 @@ void Dealership::ShowInventory() {
     for (size_t i = 0; i < _showrooms.size(); ++i) {
         _showrooms.at(i).ShowInventory();
     }
-    std::cout << "Average car price: $" << GetAveragePrice()/_showrooms.size() << std::endl;
+
+    std::cout << "Average car price: $" << GetAveragePrice() << std::endl;
 }
