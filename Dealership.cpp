@@ -8,6 +8,7 @@ Dealership::Dealership(std::string name, std::size_t capacity) {
 
 void Dealership::AddShowroom(Showroom s) {
     if (_showrooms.size() >= _MaxShowrooms) {
+        std::cout << "Dealership is full, can't add another showroom!" << std::endl;
         return;
     }
     _showrooms.push_back(s);
@@ -31,8 +32,7 @@ void Dealership::ShowInventory() {
         return;
     }
     for (size_t i = 0; i < _showrooms.size(); ++i) {
-        std::cout << "Showroom " << i + 1 << ":" << std::endl;
         _showrooms.at(i).ShowInventory();
     }
-    std::cout << "Average car price: $" << GetAveragePrice() << std::endl;
+    std::cout << "Average car price: $" << GetAveragePrice()/_showrooms.size() << std::endl;
 }
