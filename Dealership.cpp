@@ -1,8 +1,9 @@
-#include "Dealership.h"
 #include <iostream>
 
+#include "Dealership.h"
+
 Dealership::Dealership(std::string name, std::size_t capacity) {
-    _name = name;
+    _DealershipName = name;
     _MaxShowrooms = capacity;
 }
 
@@ -13,7 +14,7 @@ void Dealership::AddShowroom(Showroom s) {
     }
     _showrooms.push_back(s);
 }
-
+// Calculates the average price of each vehicle at the dealership
 float Dealership::GetAveragePrice() {
     if (_showrooms.empty()) {
         return 0.0;
@@ -24,13 +25,13 @@ float Dealership::GetAveragePrice() {
         total += _showrooms.at(i).GetInventoryValue();
         totalVehicles += _showrooms.at(i).GetVehicleList().size();
     }
-   float average = total / totalVehicles;
-   return average;
+   float averageCarPrice = total / totalVehicles;
+   return averageCarPrice;
 }
 
 void Dealership::ShowInventory() {
     if (_showrooms.empty()) {
-        std::cout << _name << " is empty!" << std::endl;
+        std::cout << _DealershipName << " is empty!" << std::endl;
         std::cout << "Average car price: $" << GetAveragePrice() << std::endl;
         return;
     }
